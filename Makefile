@@ -12,11 +12,11 @@
 
 NAME	= fractol
 
-SRC		= main.c mandelbrot.c draw.c hooks.c
+SRC		= main.c mandelbrot.c julia.c draw.c hooks.c
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -O3
 
 LIBFT	= ./libft/libft.a
 FTINC	= -I ./libft/

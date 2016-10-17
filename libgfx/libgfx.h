@@ -23,6 +23,9 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
+# define W_W WIN_WIDTH
+# define W_H WIN_HEIGHT
+
 typedef int		t_color;
 
 typedef struct	s_2dp
@@ -69,8 +72,6 @@ typedef struct	s_view
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	float		ca;
-	float		cb;
 	char		paused;
 	int			(*fractal)(struct s_view*, double, double);
 }				t_view;

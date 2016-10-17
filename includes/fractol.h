@@ -19,20 +19,29 @@
 
 # define KEY_ESC 53
 
-# define KEY_UP 13
-# define KEY_DOWN 1
-# define KEY_LEFT 0
-# define KEY_RIGHT 2
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 # define BUTTON_L 1
 # define BUTTON_R 2
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 
+# define KEY_PAUSE 49
+
 void		create(t_view *view);
 void		reload(t_view *view);
 int			mouse_hook(int button, int x, int y, t_view *v);
 int			key_hook(int keycode, t_view *view);
+int			mouse_move(int x, int y, t_view *v);
 int			get_mandelbrot(t_view *v, double r, double im);
+int			get_slayderix(t_view *v, double r, double im);
+int			get_quadslash(t_view *v, double r, double im);
+int			get_julia(t_view *v, double x, double y);
+int			get_catherine(t_view *v, double x, double y);
+int			get_lauren(t_view *v, double r, double im);
+int			get_burning_ship(t_view *v, double r, double im);
 
 #endif

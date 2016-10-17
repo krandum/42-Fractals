@@ -12,28 +12,6 @@
 
 #include "libgfx.h"
 
-void		ft_init_color_table(t_view *view, int colors)
-{
-	int				i;
-	float			f;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-
-	view->colors = (t_color*)malloc(sizeof(t_color) * colors);
-	f = 0;
-	i = -1;
-	while (++i < colors)
-	{
-		r = (unsigned char)((cos(f) + 1.0) * 128.0);
-		g = (unsigned char)((sin(f) + 1.0) * 128.0);
-		b = (unsigned char)((-cos(f) + 1.0) * 128.0);
-		view->colors[i] = ((int)r) << 16 | ((int)g) << 8 | b;
-		f += M_PI / colors;
-	}
-	view->num_colors = colors;
-}
-
 void		ft_draw_point(t_view *view, int x, int y, float z)
 {
 	float			which;

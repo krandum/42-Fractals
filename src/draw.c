@@ -45,18 +45,19 @@ int			expose(t_view *v)
 void		create(t_view *view)
 {
 	view->scale = 1.0;
+	view->z_max = 42;
 	view->x_shift = 0.0;
 	view->y_shift = 0.0;
+	view->num_colors = 84;
 	view->id = mlx_init();
 	view->win = mlx_new_window(view->id, WIN_WIDTH, WIN_HEIGHT, "42-Fract'ol");
-	view->z_max = 48;
-	view->ca = -0.7;
-	view->cb = 0.27015;
 	view->paused = 0;
 
+	ft_init_color_table(view, view->num_colors);
 	mlx_expose_hook(view->win, expose, view);
 	mlx_hook(view->win, 2, 3, key_hook, view);
 	mlx_hook(view->win, 4, 5, mouse_hook, view);
-	reload(view);
-	mlx_loop(view->id);
+	if (view->fractal == get_julia || view->fractal == get_catherine
+		|| view->fractal == get_lauren)
+		mlx_hook(view->win, 6, (1L << 6), mouse_move, view);
 }
