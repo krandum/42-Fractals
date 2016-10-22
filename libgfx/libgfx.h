@@ -63,15 +63,15 @@ typedef struct	s_view
 	float		theta;
 	float		phi;
 	float		psi;
-	double		scale;
-	double		x_shift;
-	double		y_shift;
+	long double	scale;
+	long double	x_shift;
+	long double	y_shift;
 	float		z_shift;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
 	char		paused;
-	int			(*fractal)(struct s_view*, double, double);
+	int			(*fractal)(struct s_view*, long double, long double);
 }				t_view;
 
 typedef struct	s_split

@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "mlx.h"
 # include "libgfx.h"
-# include <pthread.h>
 
 # define KEY_ESC 53
 
@@ -37,12 +36,12 @@ void		reload(t_view *view);
 int			mouse_hook(int button, int x, int y, t_view *v);
 int			key_hook(int keycode, t_view *view);
 int			mouse_move(int x, int y, t_view *v);
-int			get_mandelbrot(t_view *v, double r, double im);
-int			get_slayderix(t_view *v, double r, double im);
-int			get_quadslash(t_view *v, double r, double im);
-int			get_julia(t_view *v, double x, double y);
-int			get_catherine(t_view *v, double x, double y);
-int			get_lauren(t_view *v, double r, double im);
-int			get_burning_ship(t_view *v, double r, double im);
+int			get_mandelbrot(t_view *v, long double r, long double im);
+int			get_slayderix(t_view *v, long double r, long double im);
+int			get_quadslash(t_view *v, long double r, long double im);
+int			get_julia(t_view *v, long double x, long double y);
+int			get_catherine(t_view *v, long double x, long double y);
+int			get_lauren(t_view *v, long double r, long double im);
+int			get_burning_ship(t_view *v, long double r, long double im);
 
 #endif

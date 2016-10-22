@@ -12,12 +12,12 @@
 
 #include "fractol.h"
 
-int		get_mandelbrot(t_view *v, double r, double im)
+int		get_mandelbrot(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	r = ((3.0 * r / W_W - 2.0) / v->scale) + (v->x_shift / W_W);
@@ -40,12 +40,12 @@ int		get_mandelbrot(t_view *v, double r, double im)
 	return (i);
 }
 
-int		get_slayderix(t_view *v, double r, double im)
+int		get_slayderix(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	r = ((3.0 * r / W_W - 2.0) / v->scale) + (v->x_shift / W_W);
@@ -68,12 +68,12 @@ int		get_slayderix(t_view *v, double r, double im)
 	return (i);
 }
 
-int		get_quadslash(t_view *v, double r, double im)
+int		get_quadslash(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	r = ((3.0 * r / W_W - 2.0) / v->scale) + (v->x_shift / W_W);
@@ -96,12 +96,12 @@ int		get_quadslash(t_view *v, double r, double im)
 	return (i);
 }
 
-int		get_burning_ship(t_view *v, double r, double im)
+int		get_burning_ship(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	r = ((4.0 * r / W_W - 2.0) / v->scale) + (v->x_shift / W_W);
@@ -111,8 +111,8 @@ int		get_burning_ship(t_view *v, double r, double im)
 	i = -1;
 	while (x * x + y * y <= 4.0 && ++i < v->z_max)
 	{
-		xt = fabs(x) * fabs(x) - fabs(y) * fabs(y) + r;
-		yt = 2 * fabs(x) * fabs(y) + im;
+		xt = fabsl(x) * fabsl(x) - fabsl(y) * fabsl(y) + r;
+		yt = 2 * fabsl(x) * fabsl(y) + im;
 		if (x == xt && y == yt)
 		{
 			i = v->z_max;

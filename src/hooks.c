@@ -45,8 +45,8 @@ int				mouse_move(int x, int y, t_view *v)
 	{
 		x -= WIN_WIDTH / 2;
 		y -= WIN_HEIGHT / 2;
-		v->theta = ((float)x / WIN_WIDTH) * 1.5;
-		v->phi = ((float)y / WIN_HEIGHT) * 1.5;
+		v->theta = ((float)x / WIN_WIDTH) * .84;
+		v->phi = ((float)y / WIN_HEIGHT) * .84;
 		reload(v);
 	}
 	return (0);

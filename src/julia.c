@@ -14,11 +14,11 @@
 
 #define POW(a, b) ({for(int i=1;i<b;i++)a*=a;a;})
 
-int			get_julia(t_view *v, double x, double y)
+int			get_julia(t_view *v, long double x, long double y)
 {
-	double	r;
-	double	im;
-	double	t;
+	long double	r;
+	long double	im;
+	long double	t;
 	int		i;
 
 	r = ((4 * x / WIN_WIDTH - 2) / v->scale) + ((v->x_shift / WIN_WIDTH));
@@ -33,12 +33,12 @@ int			get_julia(t_view *v, double x, double y)
 	return (i);
 }
 
-int			get_catherine(t_view *v, double r, double im)
+int			get_catherine(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	x = ((4 * r / WIN_WIDTH - 2) / v->scale) + ((v->x_shift / WIN_WIDTH));
@@ -54,12 +54,12 @@ int			get_catherine(t_view *v, double r, double im)
 	return (i);
 }
 
-int			get_lauren(t_view *v, double r, double im)
+int			get_lauren(t_view *v, long double r, long double im)
 {
-	double	x;
-	double	y;
-	double	xt;
-	double	yt;
+	long double	x;
+	long double	y;
+	long double	xt;
+	long double	yt;
 	int		i;
 
 	x = ((4 * r / WIN_WIDTH - 2) / v->scale) + ((v->x_shift / WIN_WIDTH));

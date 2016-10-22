@@ -34,20 +34,20 @@ void		draw(t_view *view)
 	t_split	*splits;
 	int		i;
 
-	splits = (t_split*)ft_memalloc(sizeof(t_split) * 64);
+	splits = (t_split*)ft_memalloc(sizeof(t_split) * 32);
 	i = -1;
-	while (++i < 64)
+	while (++i < 32)
 	{
 		splits[i].x_start = (WIN_WIDTH / 8) * (i % 8);
 		splits[i].x_end = (WIN_WIDTH / 8) * (i % 8 + 1);
-		splits[i].y_start = (WIN_HEIGHT / 8) * (i / 8);
-		splits[i].y_end = (WIN_HEIGHT / 8) * (i / 8 + 1);
+		splits[i].y_start = (WIN_HEIGHT / 4) * (i / 8);
+		splits[i].y_end = (WIN_HEIGHT / 4) * (i / 8 + 1);
 		splits[i].view = view;
 		pthread_create(&(splits[i].thread), NULL, threaded_artist,
 			(void*)&splits[i]);
 	}
 	i = -1;
-	while (++i < 64)
+	while (++i < 32)
 		pthread_join(splits[i].thread, NULL);
 }
 
@@ -73,7 +73,7 @@ void		create(t_view *view)
 	view->z_max = 84;
 	view->x_shift = 0.0;
 	view->y_shift = 0.0;
-	view->num_colors = 84;
+	view->num_colors = 126;
 	view->id = mlx_init();
 	view->win = mlx_new_window(view->id, WIN_WIDTH, WIN_HEIGHT, "42-Fract'ol");
 	view->paused = 0;
