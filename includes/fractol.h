@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "libgfx.h"
+# include <pthread.h>
 
 # define KEY_ESC 53
 

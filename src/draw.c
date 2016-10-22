@@ -12,18 +12,43 @@
 
 #include "fractol.h"
 
-void		draw(t_view *view)
+void		*threaded_artist(void *tmp)
 {
 	int		y;
 	int		x;
+	t_split	*s;
 
-	y = -1;
-	while (++y < WIN_HEIGHT)
+	s = (t_split*)tmp;
+	y = s->y_start - 1;
+	while (++y < s->y_end)
 	{
-		x = -1;
-		while (++x < WIN_WIDTH)
-			ft_color_pixel(view, x, y, view->fractal(view, x, y));
+		x = s->x_start - 1;
+		while (++x < s->x_end)
+			ft_color_pixel(s->view, x, y, s->view->fractal(s->view, x, y));
 	}
+	return (NULL);
+}
+
+void		draw(t_view *view)
+{
+	t_split	*splits;
+	int		i;
+
+	splits = (t_split*)ft_memalloc(sizeof(t_split) * 64);
+	i = -1;
+	while (++i < 64)
+	{
+		splits[i].x_start = (WIN_WIDTH / 8) * (i % 8);
+		splits[i].x_end = (WIN_WIDTH / 8) * (i % 8 + 1);
+		splits[i].y_start = (WIN_HEIGHT / 8) * (i / 8);
+		splits[i].y_end = (WIN_HEIGHT / 8) * (i / 8 + 1);
+		splits[i].view = view;
+		pthread_create(&(splits[i].thread), NULL, threaded_artist,
+			(void*)&splits[i]);
+	}
+	i = -1;
+	while (++i < 64)
+		pthread_join(splits[i].thread, NULL);
 }
 
 void		reload(t_view *view)
@@ -45,7 +70,7 @@ int			expose(t_view *v)
 void		create(t_view *view)
 {
 	view->scale = 1.0;
-	view->z_max = 42;
+	view->z_max = 84;
 	view->x_shift = 0.0;
 	view->y_shift = 0.0;
 	view->num_colors = 84;

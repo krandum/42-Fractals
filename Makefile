@@ -6,7 +6,7 @@
 #    By: palatorr <palatorr@student.42.us.or>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/12 13:43:27 by palatorr          #+#    #+#              #
-#    Updated: 2016/10/12 13:43:29 by palatorr         ###   ########.fr        #
+#    Updated: 2016/10/16 17:13:53 by palatorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -O3
+LINK	= -lpthread
 
 LIBFT	= ./libft/libft.a
 FTINC	= -I ./libft/
@@ -34,6 +35,8 @@ SRCDIR	= ./src/
 INCDIR	= ./includes/
 OBJDIR	= ./obj/
 
+.PHONY: all full libft libgfx libmlx clean rclean fclean rfclean re fullre
+
 all: obj $(NAME)
 
 full: obj libft libgfx libmlx $(NAME)
@@ -45,24 +48,15 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) $(FTINC) $(GFXINC) $(MLXINC) -I $(INCDIR) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FTLINK) $(GFXLINK) $(MLXLINK) -o $(NAME)
+	$(CC) $(OBJ) $(FTLINK) $(GFXLINK) $(MLXLINK) $(LINK) -o $(NAME)
 
 libft:
-	$(LIBFT)
-
-libgfx:
-	$(LIBGFX)
-
-libmlx:
-	$(LIBMLX)
-
-$(LIBFT):
 	make -C ./libft/
 
-$(LIBGFX):
-	make -C ./libg/
+libgfx:
+	make -C ./libgfx/
 
-$(LIBMLX):
+libmlx:
 	make -C ./minilibx/
 
 clean:
@@ -84,9 +78,7 @@ rfclean: rclean
 
 re: fclean all
 
-gfx:
-	make -C ./libgfx/ re
-
-regfx: gfx fclean all
+f: libgfx re
+	./$(NAME) M
 
 fullre: rfclean full

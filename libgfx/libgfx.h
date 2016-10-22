@@ -16,12 +16,10 @@
 # include "libft.h"
 # include "mlx.h"
 # include "math.h"
+# include <pthread.h>
 
-# define COLOR1 0x0066ffff
-# define COLOR2 0x006600ff
-
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 900
 
 # define W_W WIN_WIDTH
 # define W_H WIN_HEIGHT
@@ -75,6 +73,16 @@ typedef struct	s_view
 	char		paused;
 	int			(*fractal)(struct s_view*, double, double);
 }				t_view;
+
+typedef struct	s_split
+{
+	int			y_start;
+	int			y_end;
+	int			x_start;
+	int			x_end;
+	t_view		*view;
+	pthread_t	thread;
+}				t_split;
 
 t_color		ft_get_color(t_view *view, float c);
 void		ft_init_color_table(t_view *view, int colors);
