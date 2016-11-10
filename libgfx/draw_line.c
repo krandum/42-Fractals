@@ -19,7 +19,8 @@ void		ft_draw_point(t_view *view, int x, int y, float z)
 
 	if (x > 0 && y > 0 && x < WIN_WIDTH && y < WIN_HEIGHT)
 	{
-		which = ((z - view->z_min) / (view->z_max - view->z_min)) * (view->num_colors);
+		which = ((z - view->z_min) / (view->z_max - view->z_min)) *
+			(view->num_colors);
 		color = view->colors[abs((int)which - 1)];
 		mlx_pixel_put(view->id, view->win, x, y, color);
 	}

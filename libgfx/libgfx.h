@@ -17,6 +17,7 @@
 # include "mlx.h"
 # include "math.h"
 # include <pthread.h>
+# include <semaphore.h>
 
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 900
@@ -53,7 +54,6 @@ typedef struct	s_view
 	void		*win;
 	void		*img;
 	char		*pixels;
-	t_vertex	***points;
 	t_color		*colors;
 	int			num_colors;
 	int			width;
@@ -72,6 +72,7 @@ typedef struct	s_view
 	int			endian;
 	char		paused;
 	int			(*fractal)(struct s_view*, long double, long double);
+	int			roll;
 }				t_view;
 
 typedef struct	s_split

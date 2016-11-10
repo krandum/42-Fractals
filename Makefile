@@ -39,46 +39,54 @@ OBJDIR	= ./obj/
 
 all: obj $(NAME)
 
-full: obj libft libgfx libmlx $(NAME)
+full: obj libft libgfx mlx $(NAME)
 
 obj:
-	mkdir $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(FTINC) $(GFXINC) $(MLXINC) -I $(INCDIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(FTINC) $(GFXINC) $(MLXINC) -I $(INCDIR) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FTLINK) $(GFXLINK) $(MLXLINK) $(LINK) -o $(NAME)
+	$(CC) $(OBJ) $(FTLINK) $(GFXLINK) $(MLXLINK) -o $(NAME)
 
-libft:
+libft: $(LIBFT)
+
+libgfx: $(LIBGFX)
+
+mlx: $(LIBMLX)
+
+$(LIBFT):
 	make -C ./libft/
 
-libgfx:
+$(LIBGFX):
 	make -C ./libgfx/
 
-libmlx:
+$(LIBMLX):
 	make -C ./minilibx/
 
 clean:
 	rm -rf $(OBJDIR)
 
-rclean:
-	rm -rf $(OBJDIR)
-	make -C ./libft/ clean
-	make -C ./libgfx/ clean
-	make -C ./minilibx/ clean
-
 fclean: clean
 	rm -rf $(NAME)
 
-rfclean: rclean
+totalclean:
+	rm -rf $(OBJDIR)
+	make -C ./libft clean
+	make -C ./libgfx clean
+	make -C ./minilibx clean
+
+totalfclean: totalclean
 	rm -rf $(NAME)
-	make -C ./libft/ fclean
-	make -C ./libgfx/ fclean
+	make -C ./libft fclean
+	make -C ./libgfx fclean
 
 re: fclean all
 
-f: libgfx re
-	./$(NAME) M
+gfx:
+	make -C ./libgfx re
 
-fullre: rfclean full
+regfx: gfx re
+
+fullre: totalfclean libft libgfx mlx all

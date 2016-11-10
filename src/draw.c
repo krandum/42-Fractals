@@ -34,21 +34,22 @@ void		draw(t_view *view)
 	t_split	*splits;
 	int		i;
 
-	splits = (t_split*)ft_memalloc(sizeof(t_split) * 32);
+	splits = (t_split*)ft_memalloc(sizeof(t_split) * 16);
 	i = -1;
-	while (++i < 32)
+	while (++i < 16)
 	{
-		splits[i].x_start = (WIN_WIDTH / 8) * (i % 8);
-		splits[i].x_end = (WIN_WIDTH / 8) * (i % 8 + 1);
-		splits[i].y_start = (WIN_HEIGHT / 4) * (i / 8);
-		splits[i].y_end = (WIN_HEIGHT / 4) * (i / 8 + 1);
+		splits[i].x_start = (WIN_WIDTH / 4) * (i % 4);
+		splits[i].x_end = (WIN_WIDTH / 4) * (i % 4 + 1);
+		splits[i].y_start = (WIN_HEIGHT / 4) * (i / 4);
+		splits[i].y_end = (WIN_HEIGHT / 4) * (i / 4 + 1);
 		splits[i].view = view;
 		pthread_create(&(splits[i].thread), NULL, threaded_artist,
 			(void*)&splits[i]);
 	}
 	i = -1;
-	while (++i < 32)
+	while (++i < 16)
 		pthread_join(splits[i].thread, NULL);
+	free(splits);
 }
 
 void		reload(t_view *view)
@@ -77,6 +78,7 @@ void		create(t_view *view)
 	view->id = mlx_init();
 	view->win = mlx_new_window(view->id, WIN_WIDTH, WIN_HEIGHT, "42-Fract'ol");
 	view->paused = 0;
+	view->roll = 0;
 
 	ft_init_color_table(view, view->num_colors);
 	mlx_expose_hook(view->win, expose, view);

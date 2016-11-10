@@ -69,6 +69,8 @@ int				key_hook(int keycode, t_view *v)
 		v->x_shift -= 15.0;
 	else if (keycode == KEY_RIGHT)
 		v->x_shift += 15.0;
+	else if (keycode == 8)
+		v->roll += 6;
 	reload(v);
 	return (0);
 }

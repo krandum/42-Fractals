@@ -18,7 +18,7 @@ void		ft_color_pixel(t_view *v, int x, int y, int iter)
 	int		color;
 
 	if (iter != v->z_max)
-		color = v->colors[iter % v->num_colors];
+		color = v->colors[(iter + v->roll) % v->num_colors];
 	else
 		color = 0;
 	i = (x * 4) + (y * v->size_line);
