@@ -16,8 +16,7 @@ int		get_mandelbrot(t_view *v, long double r, long double im)
 {
 	long double	x;
 	long double	y;
-	long double	xt;
-	long double	yt;
+	long double	t;
 	int		i;
 
 	r = ((3.0 * r / W_W - 2.0) / v->scale) + (v->x_shift / W_W);
@@ -27,15 +26,9 @@ int		get_mandelbrot(t_view *v, long double r, long double im)
 	i = -1;
 	while (x * x + y * y <= 4.0 && ++i < v->z_max)
 	{
-		xt = x * x - y * y + r;
-		yt = 2 * x * y + im;
-		if (x == xt && y == yt)
-		{
-			i = v->z_max;
-			break;
-		}
-		x = xt;
-		y = yt;
+		t = x * x - y * y + r;
+		y = 2 * x * y + im;
+		x = t;
 	}
 	return (i);
 }

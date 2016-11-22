@@ -26,16 +26,32 @@ static int	set_get_function(t_view *view, char *str)
 		view->theta = -0.7;
 		view->phi = 0.27015;
 	}
-	else if (ft_strequ("C", str) || ft_strequ("Catherine", str))
+	else if (ft_strequ("K", str) || ft_strequ("Katherine", str))
 		view->fractal = get_catherine;
 	else if (ft_strequ("L", str) || ft_strequ("Lauren", str))
 		view->fractal = get_lauren;
 	else if (ft_strequ("B", str) || ft_strequ("Burning Ship", str))
 		view->fractal = get_burning_ship;
+	else if (ft_strequ("C", str) || ft_strequ("Carpet", str))
+		view->fractal = get_carpet;
+	else if (ft_strequ("MJ", str) || ft_strequ("Mandeljulia", str))
+		view->fractal = get_mandeljulia;
+	else if (ft_strequ("BJ", str) || ft_strequ("Burning Julia", str))
+	{
+		view->fractal = get_burning_julia;
+		view->theta = 0.0;
+		view->phi = -0.297;
+	}
+	else if (ft_strequ("EB", str) || ft_strequ("Expobrot", str))
+	{
+		view->fractal = get_expobrot;
+		view->theta = -0.65;
+		view->phi = 0.0;
+	}
+	else if (ft_strequ("BL", str) || ft_strequ("Burning Lauren", str))
+		view->fractal = get_burning_lauren;
 	return (view->fractal == 0 ? 0 : 1);
 }
-
-#include <stdio.h>
 
 int			main(int argc, char **argv)
 {
@@ -44,13 +60,13 @@ int			main(int argc, char **argv)
 	view = (t_view*)ft_memalloc(sizeof(t_view));
 	if (argc != 2 || !set_get_function(view, argv[1]))
 	{
-		ft_putendl("Usage: ./fractol [M/S/Q/J/L/B]");
+		ft_putendl("Usage: ./fractol [M/S/Q/J/K/L/B/C/MJ/BJ/BL/EB]");
 		ft_putstr("\tor [Mandelbrot / Slayderix / Quadslash");
-		ft_putendl(" / Julia / Catherine / Lauren / Burning Ship]");
+		ft_putstr(" / Julia / Katherine / Lauren / Burning Ship");
+		ft_putendl(" / Carpet / Mandeljulia / Burning Julia / Burning Lauren / Expobrot]");
 		return (0);
 	}
 	create(view);
 	reload(view);
 	mlx_loop(view->id);
 }
-

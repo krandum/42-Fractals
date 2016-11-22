@@ -43,5 +43,10 @@ int			get_julia(t_view *v, long double x, long double y);
 int			get_catherine(t_view *v, long double x, long double y);
 int			get_lauren(t_view *v, long double r, long double im);
 int			get_burning_ship(t_view *v, long double r, long double im);
+int			get_carpet(t_view *v, long double x, long double y);
+int			get_mandeljulia(t_view *v, long double r, long double im);
+int			get_burning_julia(t_view *v, long double x, long double y);
+int			get_expobrot(t_view *v, long double r, long double im);
+int			get_burning_lauren(t_view *v, long double x, long double y);
 
 #endif

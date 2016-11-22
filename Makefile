@@ -12,7 +12,7 @@
 
 NAME	= fractol
 
-SRC		= main.c mandelbrot.c julia.c draw.c hooks.c
+SRC		= main.c mandelbrot.c julia.c draw.c hooks.c other.c
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC		= gcc

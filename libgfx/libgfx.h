@@ -100,5 +100,6 @@ t_vertex	*ft_get_vertex(float x, float y, float z);
 void		ft_draw_point(t_view *view, int x, int y, float z);
 void		ft_drawline_3d(t_view *view, t_3dp p0, t_3dp p1);
 void		ft_color_pixel(t_view *v, int x, int y, int iter);
+int			get_burning_lauren(t_view *v, long double x, long double y);
 
 #endif

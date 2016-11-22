@@ -14,15 +14,13 @@
 
 #define POW(a, b) ({for(int i=1;i<b;i++)a*=a;a;})
 
-int			get_julia(t_view *v, long double x, long double y)
+int			get_julia(t_view *v, long double r, long double im)
 {
-	long double	r;
-	long double	im;
 	long double	t;
 	int		i;
 
-	r = ((4 * x / WIN_WIDTH - 2) / v->scale) + ((v->x_shift / WIN_WIDTH));
-	im = ((-3 * y / WIN_HEIGHT + 1.5) / v->scale) + ((v->y_shift / WIN_HEIGHT));
+	r = ((4 * r / WIN_WIDTH - 2) / v->scale) + ((v->x_shift / WIN_WIDTH));
+	im = ((-3 * im / WIN_HEIGHT + 1.5) / v->scale) + ((v->y_shift / WIN_HEIGHT));
 	i = -1;
 	while (++i < v->z_max && r * r + im * im <= 4.0)
 	{

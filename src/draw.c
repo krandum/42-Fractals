@@ -74,6 +74,12 @@ void		create(t_view *view)
 	view->z_max = 84;
 	view->x_shift = 0.0;
 	view->y_shift = 0.0;
+	if (!view->theta)
+	{
+		view->theta = 0.0;
+		view->phi = 0.0;
+		view->psi = 1.0;
+	}
 	view->num_colors = 126;
 	view->id = mlx_init();
 	view->win = mlx_new_window(view->id, WIN_WIDTH, WIN_HEIGHT, "42-Fract'ol");
@@ -85,6 +91,7 @@ void		create(t_view *view)
 	mlx_hook(view->win, 2, 3, key_hook, view);
 	mlx_hook(view->win, 4, 5, mouse_hook, view);
 	if (view->fractal == get_julia || view->fractal == get_catherine
-		|| view->fractal == get_lauren)
+		|| view->fractal == get_lauren || view->fractal == get_burning_julia
+		|| view->fractal == get_expobrot || view->fractal == get_burning_lauren)
 		mlx_hook(view->win, 6, (1L << 6), mouse_move, view);
 }
